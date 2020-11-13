@@ -39,6 +39,7 @@ class Mastermind:
     def generate_normal_code(cls) -> list:
         """ DEBUG TODO
         """
+        return ["gruen", "gelb", "gruen", "lila", "lila", "lila"]
         return [random.choice(cls.COLORS) for _ in cls.COLORS]
         # return random.sample(cls.COLORS, len(cls.COLORS))
 
@@ -85,14 +86,18 @@ class Mastermind:
         answer_list = []
 
         # 0 -> X, 1 -> BLANK, 2 -> O
+        already_used_pos = []  # From secret code list
+
         for i, answer in enumerate(self.pressed):
             # Correct Color + Position (X)
             if self.secret_code[i] == answer:
                 answer_list.append(0)
+                already_used_pos.append(i)
 
             # Correct Color (0)
-            elif answer in self.secret_code:
+            elif answer in self.secret_code and (index := self.secret_code.index(answer)) not in already_used_pos:
                 answer_list.append(2)
+                already_used_pos.append(index)
 
             # Just for padding
             else:
