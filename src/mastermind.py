@@ -39,7 +39,6 @@ class Mastermind:
     def generate_normal_code(cls) -> list:
         """ DEBUG TODO
         """
-        return ["gruen", "gelb", "gruen", "lila", "lila", "lila"]
         return [random.choice(cls.COLORS) for _ in cls.COLORS]
         # return random.sample(cls.COLORS, len(cls.COLORS))
 
